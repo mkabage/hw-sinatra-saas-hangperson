@@ -20,7 +20,7 @@ class HangpersonGame
 
   def guess(word)
     word.downcase! unless word.nil?
-    
+
     raise ArgumentError.new("Expected a letter") if invalid?(word)
 
     return false  if repeated_word?(word)
@@ -33,7 +33,7 @@ class HangpersonGame
   end
 
   def check_win_or_lose
-    if (@word.chars.sort == @guesses.chars.sort)
+    if (@word.chars.uniq.sort == @guesses.chars.sort)
       :win
     elsif @wrong_guesses.size == 7
       :lose
